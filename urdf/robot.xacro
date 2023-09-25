@@ -80,28 +80,44 @@
         </collision>
     </link>
 
+
+    <link name = "wheel_center">
+        <visual>
+            <origin xyz = "0.0 0.0 0.0" rpy = "${-1*pi/2} 0.0 0.0" />
+            <geometry> 
+                <cylinder radius="0.15" length="0.05" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz = "0.0 0.0 0.0" rpy = "${-1*pi/2} 0.0 0.0" />
+            <geometry> 
+                <cylinder radius="0.15" length="0.05" />
+            </geometry>
+        </collision>
+    </link>
+
     <!-- XACRO Macro definition block to add around the wheel link and joint !-->
     <xacro:macro name = "xacro_name" params = "side reflect" > 
 
-        <link name = "wheel_left">
+        <link name = "wheel_${side}">
             <visual>
-                <origin xyz = "-0.10 0.4 0.0" rpy = "-1.5707 0.0 0.0" />
+                <origin xyz = "-0.10 0 0.0" rpy = "${-1*pi/2} 0.0 0.0" />
                 <geometry> 
                     <cylinder radius="0.2" length="0.05" />
                 </geometry>
             </visual>
             <collision>
-                <origin xyz = "-0.10 0.4 0.0" rpy = "-1.5707 0.0 0.0" />
+                <origin xyz = "-0.10 0 0.0" rpy = "${-1*pi/2} 0.0 0.0" />
                 <geometry> 
                     <cylinder radius="0.2" length="0.05" />
                 </geometry>
             </collision>
         </link>
 
-        <joint name = "base_wheel_left_joint" type = "fixed" >
+        <joint name = "base_wheel_${side}_joint" type = "fixed" >
             <parent link = "base" />
-            <child link = "wheel_left" />
-            <origin xyz = "0 0 0" rpy = "0 0 0" />
+            <child link = "wheel_${side}" />
+            <origin xyz = "0 ${reflect * 0.4} 0" />
         </joint >
 
 
@@ -109,7 +125,13 @@
     <!-- Call the XACRO Macro. It should be the left wheel !-->
     <xacro:xacro_name side = "left" reflect = "1" />
 
+    <xacro:xacro_name side = "right" reflect = "-1" />
 
+    <joint name = "base_wheel_center_joint" type = "fixed" >
+        <parent link = "base" />
+        <child link = "wheel_center" />
+        <origin xyz = "0.225 0 -0.05" rpy = "0 0 0" />
+    </joint >
 
     <joint name = "base_laser_vert_bottom_joint" type = "fixed" >
         <parent link = "base" />
