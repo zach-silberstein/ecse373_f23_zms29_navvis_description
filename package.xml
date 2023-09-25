@@ -64,6 +64,8 @@
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>urdf</exec_depend>
   <exec_depend>xacro</exec_depend>
+  <build_depend>gazebo_plugins</build_depend>
+  <build_depend>velodyne_description</build_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
