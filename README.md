@@ -15,7 +15,7 @@ To install the velodyne_description package:
 
 #### Usage
 To run the project, run the display.launch file by:  
-    `roslaunch navvis_description  display.launch`  
+    `roslaunch navvis_description display.launch`  
 Default options are to run using the outdated robot.urdf file and to use the joint_state_publisher_gui.  
 To run using the updated robot.xacro file:  
     `roslaunch navvis_description display.launch use_xacro:=true`
